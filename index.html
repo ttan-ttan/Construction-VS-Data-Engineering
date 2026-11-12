@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Constructing Data | Civil to Data Engineering Mapping</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            blueprint: '#0b0f19',
+            civil: '#ff9f1c',
+            data: '#00e5ff',
+            cardBg: 'rgba(15, 23, 42, 0.75)',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;600;800&display=swap');
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0b0f19;
+      color: #f1f5f9;
+      background-image: 
+        linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    
+    .code-font {
+      font-family: 'Fira Code', monospace;
+    }
+
+    .glow-civil {
+      box-shadow: 0 0 25px -5px rgba(255, 159, 28, 0.25);
+    }
+
+    .glow-data {
+      box-shadow: 0 0 25px -5px rgba(0, 229, 255, 0.25);
+    }
+
+    .reveal-card {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal-card.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="min-h-screen pb-20">
+
+  <!-- Navigation -->
+  <header class="sticky top-0 z-50 backdrop-blur-md border-b border-slate-800 bg-blueprint/80 px-6 py-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <div class="flex items-center space-x-3">
+        <span class="h-3 w-3 rounded-full bg-civil animate-pulse"></span>
+        <span class="h-3 w-3 rounded-full bg-data animate-pulse"></span>
+        <h1 class="font-extrabold text-lg tracking-wider text-slate-100 uppercase">Constructing <span class="text-data">Data</span></h1>
+      </div>
+      <nav class="hidden md:flex space-x-6 text-sm text-slate-400">
+        <a href="#overview" class="hover:text-data transition-colors">Macro View</a>
+        <a href="#pipeline" class="hover:text-civil transition-colors">Pipeline Stage Comparison</a>
+        <a href="#summary" class="hover:text-slate-100 transition-colors">Mapping Matrix</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="max-w-5xl mx-auto px-6 pt-16 pb-12 text-center">
+    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full border border-slate-700 bg-slate-900/60 text-xs text-slate-300 mb-6 code-font">
+      <span>Structural Engineering</span>
+      <span class="text-slate-500">⇄</span>
+      <span class="text-data">Data Architecture</span>
+    </div>
+    <h1 class="text-4xl md:text-6xl font-extrabold text-white tracking-tight leading-tight mb-6">
+      Building Structures & Building Pipelines share the <span class="text-transparent bg-clip-text bg-gradient-to-r from-civil via-yellow-400 to-data">Same Engineering DNA</span>.
+    </h1>
+    <p class="text-slate-400 text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
+      From requirement gathering and regulatory compliance to clash detection and final site execution—discover how civil construction workflows directly mirror modern ETL data engineering pipelines.
+    </p>
+  </section>
+
+  <!-- Macro Blueprint Flow Matrix -->
+  <section id="overview" class="max-w-6xl mx-auto px-6 py-10">
+    <h2 class="text-xs uppercase tracking-widest text-slate-500 font-bold mb-6 text-center code-font">[ 01. BIRD'S-EYE VIEW ARCHITECTURE ]</h2>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div class="p-5 rounded-xl border border-slate-800 bg-cardBg hover:border-civil/50 transition-all">
+        <span class="text-xs font-bold text-civil code-font">STAGE 01</span>
+        <h3 class="text-lg font-bold text-slate-100 mt-1 mb-2">Requirements</h3>
+        <p class="text-xs text-slate-400">Client briefs, structural loads & safety regulations vs. Business KPIs & data SLAs.</p>
+      </div>
+      <div class="p-5 rounded-xl border border-slate-800 bg-cardBg hover:border-civil/50 transition-all">
+        <span class="text-xs font-bold text-civil code-font">STAGE 02</span>
+        <h3 class="text-lg font-bold text-slate-100 mt-1 mb-2">Extraction</h3>
+        <p class="text-xs text-slate-400">Drawing packages & statutory codes vs. Raw APIs, databases & flat file ingestion.</p>
+      </div>
+      <div class="p-5 rounded-xl border border-slate-800 bg-cardBg hover:border-data/50 transition-all">
+        <span class="text-xs font-bold text-data code-font">STAGE 03</span>
+        <h3 class="text-lg font-bold text-slate-100 mt-1 mb-2">Transformation</h3>
+        <p class="text-xs text-slate-400">BIM spatial clash detection & load checks vs. Deduplication, DAX metrics & schema joins.</p>
+      </div>
+      <div class="p-5 rounded-xl border border-slate-800 bg-cardBg hover:border-data/50 transition-all">
+        <span class="text-xs font-bold text-data code-font">STAGE 04</span>
+        <h3 class="text-lg font-bold text-slate-100 mt-1 mb-2">Production</h3>
+        <p class="text-xs text-slate-400">PE sign-off & physical site build vs. Curated data warehouse & BI dashboard feeds.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detailed Stage Comparison Section -->
+  <section id="pipeline" class="max-w-6xl mx-auto px-6 py-10 space-y-12">
+    <h2 class="text-xs uppercase tracking-widest text-slate-500 font-bold mb-2 text-center code-font">[ 02. STAGE-BY-STAGE EQUIVALENCE ]</h2>
+
+    <!-- Stage 1 -->
+    <div class="reveal-card p-6 md:p-8 rounded-2xl border border-slate-800 bg-cardBg">
+      <div class="flex items-center space-x-3 mb-6 border-b border-slate-800 pb-4">
+        <span class="px-3 py-1 text-xs font-bold rounded bg-civil/10 text-civil border border-civil/20 code-font">PHASE 01</span>
+        <h3 class="text-xl font-bold text-white">Business Brief & Requirement Analysis</h3>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Civil Side -->
+        <div class="space-y-3 p-5 rounded-xl bg-slate-900/80 border-l-4 border-civil glow-civil">
+          <div class="flex justify-between items-center">
+            <span class="text-xs font-semibold text-civil uppercase tracking-wider">Civil Construction</span>
+            <span class="text-xs text-slate-500 code-font">Building Specs</span>
+          </div>
+          <h4 class="text-base font-bold text-slate-200">Defining Physical Constraints</h4>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Before breaking ground, engineers evaluate client intent: occupancy type, structural load parameters (dead/live load), 4-hour fire resistance ratings, and building authority codes (e.g., BCA/SCDF).
+          </p>
+        </div>
+        <!-- Data Side -->
+        <div class="space-y-3 p-5 rounded-xl bg-slate-900/80 border-l-4 border-data glow-data">
+          <div class="flex justify-between items-center">
+            <span class="text-xs font-semibold text-data uppercase tracking-wider">Data Engineering</span>
+            <span class="text-xs text-slate-500 code-font">Business Discovery</span>
+          </div>
+          <h4 class="text-base font-bold text-slate-200">Defining Analytical Scope</h4>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Engineers clarify business objectives: key performance indicators (KPIs), latency requirements (real-time vs batch), query performance target, and data security governance (GDPR/PDPA).
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stage 2 -->
+    <div class="reveal-card p-6 md:p-8 rounded-2xl border border-slate-800 bg-cardBg">
+      <div class="flex items-center space-x-3 mb-6 border-b border-slate-800 pb-4">
+        <span class="px-3 py-1 text-xs font-bold rounded bg-civil/10 text-civil border border-civil/20 code-font">PHASE 02</span>
+        <h3 class="text-xl font-bold text-white">Extraction & Ingestion</h3>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Civil Side -->
+        <div class="space-y-3 p-5 rounded-xl bg-slate-900/80 border-l-4 border-civil glow-civil">
+          <div class="flex justify-between items-center">
+            <span class="text-xs font-semibold text-civil uppercase tracking-wider">Civil Construction</span>
+            <span class="text-xs text-slate-500 code-font">Document Ingestion</span>
+          </div>
+          <h4 class="text-base font-bold text-slate-200">Gathering Specifications & Drawings</h4>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Consolidating architectural blueprints, MEP (Mechanical, Electrical, Plumbing) drawings, soil test reports, and standard structural details across multiple contractor channels.
+          </p>
+        </div>
+        <!-- Data Side -->
+        <div class="space-y-3 p-5 rounded-xl bg-slate-900/80 border-l-4 border-data glow-data">
+          <div class="flex justify-between items-center">
+            <span class="text-xs font-semibold text-data uppercase tracking-wider">Data Engineering</span>
+            <span class="text-xs text-slate-500 code-font">Pipeline Ingestion (E)</span>
+          </div>
+          <h4 class="text-base font-bold text-slate-200">Sourcing Raw Data Streams</h4>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Pulling unstructured and structured data from disparate source systems: transactional SQL databases, RESTful APIs, cloud storage buckets, web hooks, and legacy flat files into a raw Landing Zone.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stage 3 -->
+    <div class="reveal-card p-6 md:p-8 rounded-2xl border border-slate-800 bg-cardBg">
+      <div class="flex items-center space-x-3 mb-6 border-b border-slate-800 pb-4">
+        <span class="px-3 py-1 text-xs font-bold rounded bg-civil/10 text-civil border border-civil/20 code-font">PHASE 03</span>
+        <h3 class="text-xl font-bold text-white">Transformation & Clash Detection</h3>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Civil Side -->
+        <div class="space-y-3 p-5 rounded-xl bg-slate-900/80 border-l-4 border-civil glow-civil">
+          <div class="flex justify-between items-center">
+            <span class="text-xs font-semibold text-civil uppercase tracking-wider">Civil Construction</span>
+            <span class="text-xs text-slate-500 code-font">BIM Coordination</span>
+          </div>
+          <h4 class="text-base font-bold text-slate-200">Resolving Spatial & Regulatory Clashes</h4>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Overlapping MEP ducts with structural beams (clash resolution). Adjusting beam dimensions, ensuring fire resistance compliance, and standardizing details prior to site execution.
+          </p>
+        </div>
+        <!-- Data Side -->
+        <div class="space-y-3 p-5 rounded-xl bg-slate-900/80 border-l-4 border-data glow-data">
+          <div class="flex justify-between items-center">
+            <span class="text-xs font-semibold text-data uppercase tracking-wider">Data Engineering</span>
+            <span class="text-xs text-slate-500 code-font">Transformation (T)</span>
+          </div>
+          <h4 class="text-base font-bold text-slate-200">Data Cleansing & Modeling</h4>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Cleansing dirty data, handling missing values, deduplicating records, modeling star schemas (fact & dimension tables), and computing aggregated DAX metrics to ensure analytical accuracy.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stage 4 -->
+    <div class="reveal-card p-6 md:p-8 rounded-2xl border border-slate-800 bg-cardBg">
+      <div class="flex items-center space-x-3 mb-6 border-b border-slate-800 pb-4">
+        <span class="px-3 py-1 text-xs font-bold rounded bg-civil/10 text-civil border border-civil/20 code-font">PHASE 04</span>
+        <h3 class="text-xl font-bold text-white">Sign-off & Production Delivery</h3>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Civil Side -->
+        <div class="space-y-3 p-5 rounded-xl bg-slate-900/80 border-l-4 border-civil glow-civil">
+          <div class="flex justify-between items-center">
+            <span class="text-xs font-semibold text-civil uppercase tracking-wider">Civil Construction</span>
+            <span class="text-xs text-slate-500 code-font">Site Execution</span>
+          </div>
+          <h4 class="text-base font-bold text-slate-200">PFT & Physical Erection</h4>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Obtaining Qualified Person (QP) / Consultant approval, issuing final Construction (PFT) drawings to the site team, pouring concrete, and delivering the physical facility to the client.
+          </p>
+        </div>
+        <!-- Data Side -->
+        <div class="space-y-3 p-5 rounded-xl bg-slate-900/80 border-l-4 border-data glow-data">
+          <div class="flex justify-between items-center">
+            <span class="text-xs font-semibold text-data uppercase tracking-wider">Data Engineering</span>
+            <span class="text-xs text-slate-500 code-font">Target Load (L) & BI</span>
+          </div>
+          <h4 class="text-base font-bold text-slate-200">Warehouse Serving & Dashboards</h4>
+          <p class="text-sm text-slate-400 leading-relaxed">
+            Loading curated Gold-layer schemas into cloud warehouses (Snowflake/Fabric/Postgres), triggering automated Power BI/Tableau reports, and enabling executive decision-making.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Summary Table -->
+  <section id="summary" class="max-w-6xl mx-auto px-6 py-10">
+    <h2 class="text-xs uppercase tracking-widest text-slate-500 font-bold mb-6 text-center code-font">[ 03. EXECUTIVE SUMMARY MATRIX ]</h2>
+    <div class="overflow-x-auto rounded-xl border border-slate-800 bg-cardBg">
+      <table class="w-full text-left text-sm text-slate-300">
+        <thead class="bg-slate-900/90 text-xs text-slate-400 uppercase code-font border-b border-slate-800">
+          <tr>
+            <th class="py-4 px-6">Process Phase</th>
+            <th class="py-4 px-6 text-civil">Civil Construction Equivalent</th>
+            <th class="py-4 px-6 text-data">Data Engineering ETL Equivalent</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-800/60">
+          <tr class="hover:bg-slate-800/30">
+            <td class="py-4 px-6 font-semibold text-white code-font">Planning</td>
+            <td class="py-4 px-6">Client Brief & Regulatory Compliance (BCA / SCDF)</td>
+            <td class="py-4 px-6">Business Analysis & Data SLA Definition</td>
+          </tr>
+          <tr class="hover:bg-slate-800/30">
+            <td class="py-4 px-6 font-semibold text-white code-font">Ingestion</td>
+            <td class="py-4 px-6">Contract Drawings, Specs & Soil Reports</td>
+            <td class="py-4 px-6">Extraction from APIs, DBs, and Landing Files</td>
+          </tr>
+          <tr class="hover:bg-slate-800/30">
+            <td class="py-4 px-6 font-semibold text-white code-font">Quality Control</td>
+            <td class="py-4 px-6">BIM Clash Detection & Structural Load Checks</td>
+            <td class="py-4 px-6">Data Deduplication, Schema Validation & DAX</td>
+          </tr>
+          <tr class="hover:bg-slate-800/30">
+            <td class="py-4 px-6 font-semibold text-white code-font">Delivery</td>
+            <td class="py-4 px-6">Print PFT Drawings & Site Construction</td>
+            <td class="py-4 px-6">Load Gold Tables into Warehouse & Serve BI Dashboards</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <script>
+    // Scroll Reveal Effect
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal-card').forEach(card => {
+      observer.observe(card);
+    });
+  </script>
+</body>
+</html>
